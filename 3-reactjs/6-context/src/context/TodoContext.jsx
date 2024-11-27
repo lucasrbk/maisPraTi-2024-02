@@ -18,10 +18,22 @@ export const TodoProvider = ({children}) => {
         setTodos([...todos, { id: Date.now(), task, completed:false }]) // Cria um novo objeto de tarefa com um id único usando Date.now(), a descrição 'task', e completed definido como false
     }
 
-    // Retorna o contexto Provider, que fornecerá o estado atual de 'todos' e a função 'addTodo' para todos os componentes filhos
+    // Função que remove uma tarefa da lista de 'todos' com base no id
+    const removeTodo = (id) => {
+        setTodos(todos.filter(todo => todo.id !== id)) // Filtra a lista de tarefas, removendo a tarefa com o id correspondente
+    }
+
+    // Função que alterna o estado de conclusão de uma tarefa com base no id
+    const toggleTodo = (id) => {
+        setTodos(todos.map(todo => 
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo // Alterna o valor de 'completed' para a tarefa com o id correspondente
+        ))
+    }
+
+    // Retorna o contexto Provider, que fornecerá o estado atual de 'todos' e as funções 'addTodo', 'removeTodo' e 'toggleTodo' para todos os componentes filhos
     return (
         // Renderiza os componentes filhos que estiverem dentro de TodoProvider, permitindo que eles acessem o contexto
-        <TodoContext.Provider value={{ todos, addTodo }}>
+        <TodoContext.Provider value={{ todos, addTodo, removeTodo, toggleTodo }}>
             {children} 
         </TodoContext.Provider>
     )

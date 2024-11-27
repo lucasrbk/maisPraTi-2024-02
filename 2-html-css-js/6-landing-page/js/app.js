@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     swiper.slideTo(1);
                     // Se o valor digitado for 'POKEMON', move para o segundo slide (índice 1).
                     break;
+                case 'ZELDA':
+                    swiper.slideTo(2);
+                    // Se o valor digitado for 'ZELDA', move para o terceiro slide (índice 2).
+                    break;
                 default:
                     alert('Jogo não foi encontrado');
                     // Se o valor não corresponder a nenhum dos casos, exibe um alerta informando que o jogo não foi encontrado.
